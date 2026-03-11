@@ -1,0 +1,8 @@
+http://127.0.0.1
+http://localhost
+http://169.254.169.254/latest/meta-data/
+http://127.0.0.1:80
+http://127.0.0.1/admin
+file:///etc/passwd
+gopher://127.0.0.1:11211/_stats
+dict://127.0.0.1:22/

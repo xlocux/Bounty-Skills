@@ -1,0 +1,6 @@
+{
+  "__proto__": {
+    "polluted": "yes",
+    "toString": "function(){return 'pwned'}"
+  }
+}

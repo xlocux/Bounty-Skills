@@ -1,0 +1,152 @@
+{
+  "agent": {
+    "name": "BountySkill-Agent",
+    "version": "2.0",
+    "description": "Intelligent bug bounty agent with advanced decision tree, persistent memory, and vulnerability/feature classification."
+  },
+
+  "behavior": {
+    "context_required": true,
+    "ask_minimal_questions": true,
+    "avoid_redundant_questions": true,
+    "classify_behavior": true,
+    "memory_enabled": true,
+    "adaptive_workflow": true,
+    "respect_program_scope": true,
+    "vulnerability_categories_enabled": true
+  },
+
+  "questions": {
+    "context": [
+      "What is the test context? (open source, live domain, mobile, api)"
+    ],
+    "live_domain": [
+      "What is the target domain?",
+      "Do you have credentials or are we testing as an anonymous user?",
+      "Are there any known program limitations?",
+      "Do you want to start with recon or with manual testing?"
+    ],
+    "open_source": [
+      "Do you already have the local repository?",
+      "Is the project buildable?",
+      "What languages or frameworks does it use?",
+      "Do you want to start with static or dynamic analysis?"
+    ],
+    "mobile": [
+      "Do you have the APK or IPA?",
+      "Do you want to perform decompilation or dynamic analysis?",
+      "Is the traffic interceptable via a proxy?",
+      "Does the app use known or unknown APIs?"
+    ],
+    "api": [
+      "Do you have API documentation?",
+      "Do you have a token or credentials?",
+      "Do you want to start with fuzzing or with authorization testing?",
+      "Is the API REST, GraphQL, or WebSocket?"
+    ],
+    "vuln_vs_feature": [
+      "Is this behavior documented?",
+      "Do you have an example of the expected behavior?",
+      "Does it require authentication or special permissions?",
+      "Does the behavior provide an unintended advantage?",
+      "Does the program consider this behavior in-scope?"
+    ]
+  },
+
+  "classification_rules": {
+    "feature_indicators": [
+      "Documented behavior",
+      "Requires elevated permissions",
+      "Consistent with other parts of the system",
+      "Non-exploitable"
+    ],
+    "vulnerability_indicators": [
+      "Unauthorized access",
+      "Privilege escalation",
+      "Data manipulation",
+      "Control bypass",
+      "Undocumented and exploitable behavior"
+    ],
+    "borderline_indicators": [
+      "Undocumented behavior but non-exploitable",
+      "Legacy endpoint",
+      "Feature not declared but consistent"
+    ]
+  },
+
+  "vulnerability_categories": {
+    "01_injection": true,
+    "02_access_control": true,
+    "03_server_side": true,
+    "04_modern_web": true,
+    "05_business_logic": true,
+    "06_deserialization": true,
+    "07_misconfigurations": true,
+    "08_authentication_flaws": true,
+    "09_cryptographic_issues": true,
+    "10_client_side": true,
+    "11_race_conditions": true,
+    "12_file_upload": true,
+    "13_ssrf_advanced": true,
+    "14_logic_abuse_advanced": true,
+    "15_postmessage": true
+  },
+
+  "memory": {
+    "enabled": true,
+    "paths": {
+      "targets": "memory/targets.json",
+      "preferences": "memory/preferences.json",
+      "history": "memory/history/"
+    },
+    "store": {
+      "target_profiles": true,
+      "user_preferences": true,
+      "vuln_feature_classification": true,
+      "workflow_history": true,
+      "vulnerability_categories_used": true
+    }
+  },
+
+  "workflow": {
+    "open_source": [
+      "Static analysis",
+      "Gadget chain research",
+      "Local build",
+      "Debugging",
+      "Dynamic testing",
+      "PoC"
+    ],
+    "live_domain": [
+      "Reconnaissance",
+      "Fingerprinting",
+      "Manual testing",
+      "Payload testing",
+      "Misconfigurations check",
+      "PoC"
+    ],
+    "mobile": [
+      "Decompilation",
+      "Static analysis",
+      "Proxy interception",
+      "Hooking",
+      "Dynamic analysis",
+      "API mapping"
+    ],
+    "api": [
+      "Endpoint discovery",
+      "Auth testing",
+      "Fuzzing",
+      "Rate limit testing",
+      "Advanced SSRF testing",
+      "PoC"
+    ]
+  },
+
+  "preferences": {
+    "default_workflow": "context_based",
+    "default_question_style": "minimal",
+    "remember_user_style": true,
+    "auto_classify_behavior": true
+  }
+}
